@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMM - Apresentação de Sociologia</title>
+    <style>
+        :root {
+            --primary-color: #5c2d91;
+            --secondary-color: #e6dbf4;
+            --text-color: #1a052e;
+            --white: #ffffff;
+            --accent-color: #e27ad2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(rgba(244, 238, 252, 0.90), rgba(244, 238, 252, 0.90)), 
+                        url('2-foto-mm-brasil-2000.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        /* Menu de Navegação Responsivo */
+        nav {
+            background: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+            opacity: 0.7;
+            flex: 1; /* Faz os botões dividirem o espaço igualmente no celular */
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .tab-button.active {
+            opacity: 1;
+            border-bottom: 4px solid var(--accent-color);
+            background: rgba(255,255,255,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(92, 45, 145, 0.85), rgba(33, 13, 54, 0.95)), 
+                        url('mmm.jpg') no-repeat center center;
+            background-size: cover;
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        header h1 { 
+            font-size: 2.5rem; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7); 
+            word-wrap: break-word; /* Evita que o título quebre o layout em celulares finos */
+        }
+        
+        header p { font-size: 1.1rem; font-style: italic; opacity: 0.9; }
+
+        main {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ajustes dos Slides da Apresentação */
+        .apresentacao-slide {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+        }
+
+        .apresentacao-slide h2 { 
+            color: var(--primary-color); 
+            font-size: 1.8rem; 
+            margin-bottom: 1.2rem; 
+        }
+        
+        .apresentacao-slide ul { 
+            list-style: none; 
+            font-size: 1.2rem; 
+            text-align: left; 
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        .apresentacao-slide li { 
+            margin-bottom: 1rem; 
+            position: relative; 
+            padding-left: 2.2rem;
+        }
+        
+        .apresentacao-slide li::before { 
+            content: '💜'; 
+            position: absolute; 
+            left: 0;
+            margin-right: 10px;
+        }
+
+        /* Ajustes do Roteiro */
+        .secao-roteiro {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid var(--primary-color);
+        }
+        .secao-roteiro h2 { color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.5rem; }
+
+        .img-latuff { 
+            width: 100%; 
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px; 
+            margin-bottom: 1.5rem; 
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: #19072b;
+            color: white;
+            margin-top: 3rem;
+        }
+
+        .autores {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+        }
+
+        footer a { color: var(--accent-color); text-decoration: none; }
+
+        .fonte-bloco {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.85rem;
+            opacity: 0.8;
+            word-break: break-all; /* Evita que o link grande quebre a tela no celular */
+        }
+
+        /* Regras exclusivas para telas grandes (Computadores e Notebooks) */
+        @media (min-width: 768px) {
+            header { padding: 5rem 1rem; }
+            header h1 { font-size: 3rem; }
+            main { margin: 2rem auto; }
+            .apresentacao-slide { padding: 3rem; }
+            .apresentacao-slide h2 { font-size: 2.2rem; }
+            .apresentacao-slide ul { font-size: 1.4rem; }
+            .secao-roteiro { padding: 2.5rem; border-left-width: 8px; }
+            .secao-roteiro h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <button class="tab-button active" onclick="openTab(event, 'apresentacao')">📺 Apresentação</button>
+        <button class="tab-button" onclick="openTab(event, 'roteiro')">📄 Roteiro</button>
+    </nav>
+
+    <header>
+        <h1>Marcha Mundial das Mulheres</h1>
+    </header>
+
+    <main>
+        
+        <div id="apresentacao" class="tab-content active">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <img src="mulheres.jpg" alt="Pão e Paz" class="img-latuff">
+            </div>
+
+            <section class="apresentacao-slide">
+                <h2>🗓️ Quando surgiu?</h2>
+                <ul>
+                    <li><strong>1995:</strong> Marcha "Pão e Rosas" (Quebec).</li>
+                    <li><strong>1998:</strong> Primeiro encontro internacional.</li>
+                    <li><strong>2000:</strong> 1ª Ação Internacional Global.</li>
+                </ul>
+            </section>
+
+            <section class="apresentacao-slide">
+                <h2>❓ Por que surgiu?</h2>
+                <ul>
+                    <li>Inspirado no sucesso das mulheres canadenses.</li>
+                    <li>Combate à pobreza e à violência.</li>
+                    <li>Mudança nas estruturas do Capitalismo e Patriarcado.</li>
+                </ul>
+            </section>
+
+            <section class="apresentacao-slide">
+                <h2>🚩 Principais Lutas</h2>
+                <ul>
+                    <li>Autonomia econômica e igualdade salarial.</li>
+                    <li>Bens comuns e soberania alimentar.</li>
+                    <li>Fim da militarização e das guerras.</li>
+                    <li>Erradicação da violência sexista.</li>
+                </ul>
+            </section>
+
+            <section class="apresentacao-slide">
+                <h2>🥁 Formas de Luta</h2>
+                <ul>
+                    <li><strong>Ação Direta:</strong> Marchas e ocupações.</li>
+                    <li><strong>Batucada Feminista:</strong> Som e política na rua.</li>
+                    <li><strong>Solidariedade:</strong> Alianças populares globais.</li>
+                    <li><strong>Educação:</strong> Formação política de base.</li>
+                </ul>
+            </section>
+        </div>
+
+        <div id="roteiro" class="tab-content">
+            <section class="secao-roteiro">
+                <h2>1. Quando surgiu?</h2>
+                <p>O processo de criação começou a partir da manifestação de 1995 no Quebec. O primeiro encontro internacional para definir a plataforma e as representantes ocorreu em 1998. No entanto, a Marcha Mundial das Mulheres foi formalmente convocada e veio a público como uma grande campanha global ao longo do ano 2000.</p>
+            </section>
+
+            <section class="secao-roteiro">
+                <h2>2. Por qual razão surgiu?</h2>
+                <p>A inspiração partiu de uma manifestação realizada em 1995, em Quebec, onde 850 mulheres marcharam 200 quilômetros pedindo “Pão e Rosas”. A partir disso, buscou-se criar uma campanha global para eliminar a pobreza e a violência, enfrentando o capitalismo patriarcal, racista e neoliberal.</p>
+            </section>
+
+            <section class="secao-roteiro">
+                <h2>3. Pelo que estão lutando?</h2>
+                <p>Lutam por transformação global em quatro eixos: Autonomia econômica (igualdade salarial), Bens comuns (agroecologia), Paz e desmilitarização, e o Fim da violência contra as mulheres. Também defendem a legalização do aborto e o fim do racismo.</p>
+            </section>
+
+            <section class="secao-roteiro">
+                <h2>4. Formas de luta</h2>
+                <p>Ocupação de espaços públicos, Batucada Feminista (uso de tambores), ações criativas (lambe-lambe), construção de alianças com Via Campesina e CUT, e formação política constante.</p>
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="autores">
+            <p><strong>Desenvolvido por:</strong> Henrique Vieira Neto & Gabrielle Alves Pires</p>
+        </div>
+        <p>Disciplina de Sociologia &copy; 2026</p>
+        <div class="fonte-bloco">
+            <strong>Fonte Oficial consultada:</strong><br>
+            MARCHA MUNDIAL DAS MULHERES (MMM BRASIL). Disponível em: 
+            <a href="https://marchamundialdasmulheres.org.br/" target="_blank">marchamundialdasmulheres.org.br</a>.
+        </div>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
